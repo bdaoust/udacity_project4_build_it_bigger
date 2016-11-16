@@ -8,13 +8,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.JokeProvider;
+
 
 public class MainActivity extends AppCompatActivity {
+
+    private JokeProvider mJokeProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mJokeProvider = new JokeProvider();
     }
 
 
@@ -41,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
-        Toast.makeText(this, "derp", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, mJokeProvider.getRandomJoke(), Toast.LENGTH_LONG).show();
     }
 
 
