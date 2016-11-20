@@ -8,21 +8,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.JokeProvider;
+import com.udacity.gradle.builditbigger.networking.FetchRandomJokeTask;
 
 import org.bdaoust.funnyjokesui.JokeViewerActivity;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    private JokeProvider mJokeProvider;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mJokeProvider = new JokeProvider();
     }
 
 
@@ -49,11 +45,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
-        Intent intent;
+        FetchRandomJokeTask fetchRandomJokeTask;
 
-        intent = new Intent(this, JokeViewerActivity.class);
-        intent.putExtra(JokeViewerActivity.EXTRA_JOKE, mJokeProvider.getRandomJoke());
-        startActivity(intent);
+        fetchRandomJokeTask = new FetchRandomJokeTask(new FetchRandomJokeTask.OnFetchedRandomJokeListener() {
+            @Override
+            public void onFetchedRandomJoke(String randomJoke) {
+                Intent intent;
+
+                intent = new Intent(getApplicationContext(), JokeViewerActivity.class);
+                intent.putExtra(JokeViewerActivity.EXTRA_JOKE, randomJoke);
+                startActivity(intent);
+            }
+        });
+
+        fetchRandomJokeTask.execute();
     }
 
 }

@@ -28,7 +28,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.0.1'
     compile 'com.google.code.findbugs:jsr305:2.0.1'
 
-    compile project (':funnyjokes')
     compile project (':funnyjokesui')
     compile project(path: ':backend', configuration: 'android-endpoints')
 }
