@@ -15,9 +15,6 @@ import com.google.android.gms.ads.AdView;
  */
 public class MainActivityFragment extends Fragment {
 
-    public MainActivityFragment() {
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
