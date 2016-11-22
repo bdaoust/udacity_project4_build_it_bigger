@@ -43,7 +43,7 @@ public class JokeProvider {
         mJokes.add("If at first you don't succeed; call it version 1.0");
         mJokes.add("If you give someone a program, you will frustrate them for a day; if you teach them how to program, " +
                 "you will frustrate them for a lifetime.");
-        mJokes.add("I wasn't originally going to get a brain transplant, but the I changed my mind.");
+        mJokes.add("I wasn't originally going to get a brain transplant, but then I changed my mind.");
         mJokes.add("I'd tell you a chemistry joke but I know I wouldn't get a reaction.");
         mJokes.add("Why was Cinderella thrown off the basketball team? She ran away from the ball.");
         mJokes.add("I'm glad I know sign language, it's pretty handy.");
