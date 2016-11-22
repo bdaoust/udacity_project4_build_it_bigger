@@ -17,3 +17,21 @@ allprojects {
         jcenter()
     }
 }
+
+task runAllTestsOnLocalGCEServer{
+    group 'User Defined Tasks'
+    description 'Starts the local GCEServer, runs all tests, stops the local GCEServer'
+    dependsOn ":backend:appengineRun", "runAllTests"
+    finalizedBy ":backend:appengineStop"
+
+    doLast {
+        println "------ Done running all tests on GCE local development server -------"
+    }
+}
+
+task runAllTests {
+    mustRunAfter ":backend:appengineRun"
+
+    dependsOn ":funnyjokes:test", ":backend:test", ":funnyjokesui:test", ":funnyjokesui:deviceAndroidTest",
+            ":app:test", ":app:connectedAndroidTest"
+}
