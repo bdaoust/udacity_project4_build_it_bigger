@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -18,7 +19,8 @@ import org.bdaoust.funnyjokesui.JokeViewerActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    InterstitialAd mInterstitialAd;
+    private InterstitialAd mInterstitialAd;
+    private ProgressBar mSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         requestNewInterstitial();
+
+        mSpinner = (ProgressBar)findViewById(R.id.progressBar);
     }
 
     @Override
@@ -86,10 +90,13 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(getApplicationContext(), JokeViewerActivity.class);
                 intent.putExtra(JokeViewerActivity.EXTRA_JOKE, randomJoke);
                 startActivity(intent);
+
+                mSpinner.setVisibility(View.GONE);
             }
         });
 
         fetchRandomJokeTask.execute();
+        mSpinner.setVisibility(View.VISIBLE);
     }
 
 }

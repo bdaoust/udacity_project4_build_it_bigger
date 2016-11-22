@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.udacity.gradle.builditbigger.networking.FetchRandomJokeTask;
 
@@ -15,10 +16,14 @@ import org.bdaoust.funnyjokesui.JokeViewerActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ProgressBar mSpinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mSpinner = (ProgressBar)findViewById(R.id.progressBar);
     }
 
 
@@ -55,10 +60,13 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(getApplicationContext(), JokeViewerActivity.class);
                 intent.putExtra(JokeViewerActivity.EXTRA_JOKE, randomJoke);
                 startActivity(intent);
+
+                mSpinner.setVisibility(View.GONE);
             }
         });
 
         fetchRandomJokeTask.execute();
+        mSpinner.setVisibility(View.VISIBLE);
     }
 
 }
